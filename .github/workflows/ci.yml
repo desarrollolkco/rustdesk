@@ -14,8 +14,9 @@ on:
       - "docs/**"
       - "README.md"
   push:
-    branches:
-      - master
+  branches:
+    - master
+    - lkco-edition
     paths-ignore:
       - ".github/**"
       - "docs/**"
