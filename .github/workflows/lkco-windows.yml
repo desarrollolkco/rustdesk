@@ -1,1 +1,51 @@
+name: LKCO Windows Build
 
+on:
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.5"
+
+      - name: Install LLVM
+        shell: powershell
+        run: |
+          choco install llvm --version=15.0.7 -y
+
+      - name: Flutter Packages
+        shell: powershell
+        run: |
+          cd flutter
+          flutter pub get
+          cd ..
+
+      - name: Build RustDesk
+        shell: powershell
+        run: |
+          python build.py --flutter
+
+      - name: Upload Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: LKCO-Windows
+          path: |
+            flutter\build\windows\x64\runner\Release\
