@@ -13,10 +13,11 @@ on:
     paths-ignore:
       - "docs/**"
       - "README.md"
+
   push:
-  branches:
-    - master
-    - lkco-edition
+    branches:
+      - master
+      - lkco-edition
     paths-ignore:
       - ".github/**"
       - "docs/**"
