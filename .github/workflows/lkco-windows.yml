@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 735db73ea (Add LKCO Windows Build workflow)
 name: LKCO Windows Build
 
 on:
@@ -51,9 +47,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: LKCO-Windows
-          path: |
-<<<<<<< HEAD
-            flutter\build\windows\x64\runner\Release\
-=======
-            flutter\build\windows\x64\runner\Release\
->>>>>>> 735db73ea (Add LKCO Windows Build workflow)
+          path: flutter\build\windows\x64\runner\Release\
